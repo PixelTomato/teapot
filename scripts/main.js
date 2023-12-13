@@ -1,4 +1,4 @@
-import { vertices } from "../assets/models/suzanne.js";
+import { vertices } from "../assets/models/teapot.js";
 import { Vector2, Vector3 } from "./vectors.js";
 
 const canvas = document.getElementById("viewport");
