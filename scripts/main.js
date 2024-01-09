@@ -87,21 +87,22 @@ function main() {
     ctx.strokeStyle = "white";
     ctx.fillStyle = "gray";
 
-    const tilt = Math.sin(debugFrames / 200) * 30 + 30;
+    const speed = 85;
+    const tilt = Math.sin(debugFrames / speed) * 30 + 30;
 
-    for (let i = 0; i < Math.pow(tilt - 50, 3) / 200; i++) {
+    for (let i = 0; i < Math.pow(tilt - 45, 3) / 250; i++) {
         particles.push(new Vector3(
             Math.random() / 15 + 0.1,
-            0.05 - Math.sin(debugFrames / 200) / 4,
+            0.05 - Math.sin(debugFrames / speed) / 4,
             4,
         ));
     }
 
 
     const teapot = new Mesh(teapotTriangles.slice());
-    teapot.triangles = Mesh.rotateZ(teapot.triangles, Math.sin(debugFrames / 200) * 30 + 30);
+    teapot.triangles = Mesh.rotateZ(teapot.triangles, Math.sin(debugFrames / speed) * 30 + 30);
     teapot.triangles = Mesh.scale(teapot.triangles, new Vector3(1, -1, -1));
-    teapot.triangles = Mesh.translate(teapot.triangles, new Vector3(-2.5 + Math.sin(debugFrames / 200) / 2, Math.sin(debugFrames / 200), -4));
+    teapot.triangles = Mesh.translate(teapot.triangles, new Vector3(-2.5 + Math.sin(debugFrames / speed) / 2, Math.sin(debugFrames / speed), -4));
     teapot.triangles = depthSort(teapot.triangles);
     teapot.calculateNormals();
     teapot.triangles = Mesh.project(teapot.triangles, 400, canvas);
@@ -123,7 +124,7 @@ function main() {
         ctx.beginPath();
         ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
         ctx.fill();
-        particles[i].y += 0.01;
+        particles[i].y += 0.02;
     };
 
     drawMesh(teapot, true, false);
